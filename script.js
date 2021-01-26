@@ -7,7 +7,7 @@ const confPass = document.getElementById('password-2');
 
 //Functions
 
-//Error input handling
+//Error input handling outline
 function showError(input, message) {
   const formControl = input.parentElement;
   formControl.className = 'form-control error';
@@ -15,10 +15,16 @@ function showError(input, message) {
   small.innerText = message;
 }
 
-//Success input handling
+//Success input handling outline
 function showSuccess(input) {
   const formControl = input.parentElement;
   formControl.className = 'form-control success';
+}
+
+//Valid Email
+function isValidEmail(email) {
+  const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
 }
 
 //Event Listener
@@ -35,6 +41,8 @@ if (username.value === '') {
 }
 if (email.value === '') {
   showError(email, 'Email is Required')
+} else if (!isValidEmail(email)) {
+  showError(email, 'Please enter a valid Email')
 } else {
   showSuccess(email);
 }
