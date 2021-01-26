@@ -20,7 +20,7 @@ body {
 
 .container {
   background-color: #fff;
-  border-radius: 5px;
+  border-radius: 10px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
   width: 400px;
 }
@@ -48,7 +48,7 @@ h2 {
 
 .form-control input {
   border: 2px solid #f0f0f0;
-  border-radius: 4px;
+  border-radius: 5px;
   display: block;
   width: 100%;
   padding: 10px;

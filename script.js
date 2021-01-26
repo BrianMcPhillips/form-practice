@@ -3,7 +3,7 @@ const form = document.getElementById('form');
 const username = document.getElementById('username');
 const email = document.getElementById('email');
 const password = document.getElementById('password');
-const confPass = document.getElementById('password-2');
+const confPass = document.getElementById('confirmation-password');
 
 //Functions
 
@@ -27,33 +27,29 @@ function isValidEmail(email) {
   return re.test(String(email).toLowerCase()); 
 }
 
-//Event Listener
+// Check required fields
+
+function checkRequired(inputArr) {
+  inputArr.forEach(function(input) {
+    if(input.value.trim() === '') {
+      showError(input, `${getfieldName(input)} is required`)
+    } else { 
+      showSuccess(input)
+    }
+  });
+}
+
+// Get field name 
+function getfieldName(input) {
+  return input.id.charAt(0).toUpperCase() + input.id.slice(1);
+}
+
+//Event Listeners
 form.addEventListener('submit', function(e) {
   e.preventDefault();  
 
-  console.log(username.value);
+  
 
+  checkRequired([username, email, password, confPass])
 
-if (username.value === '') {
-  showError(username, 'Username is Required')
-} else {
-  showSuccess(username);
-}
-if (email.value === '') {
-  showError(email, 'Email is Required')
-} else if (!isValidEmail(email.value)) {
-  showError(email, 'Please enter a valid Email')
-} else {
-  showSuccess(email);
-}
-if (password.value === '') {
-  showError(password, 'Password is Required')
-} else {
-  showSuccess(password);
-}
-if (confPass.value === '') {
-  showError(confPass, 'Please Re-enter your password')
-} else {
-  showSuccess(confPass);
-}
 });
